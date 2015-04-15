@@ -18,27 +18,16 @@ class L2:
 
 
 
-class L4:
+class L3:
     '''
-        send 400 requests
+        use Q3_Readin file
         '''
-    def __init__(self):
-        self.seed = 12345
-        self.url = 'http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing='
-        self.url2 = 'http://www.pythonchallenge.com/pc/def/'
-    
-    def answer(self):
-        import urllib, re
-        for t in range(400):
-            response =  urllib.urlopen(self.url+str(self.seed)).read()
-            #        print t, response
-            if re.match(r'Yes', response):  self.seed = self.seed/2
-            elif re.search(r'\.html', response):  print 'Q4:', response ;break
-            else:
-                reg_reply = re.search(r'the next nothing is ([0-9]+)', response)
-                self.seed = int( response[reg_reply.start()+20 :reg_reply.end()] )
-
-
+    def answer1(self):
+        import re
+        c = open('L3_Readin').read()
+        reg = re.findall(r'[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', c)
+        if reg:
+            print 'L3:', ''.join(r for r in reg)
 
 
 
